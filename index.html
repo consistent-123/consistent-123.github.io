@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consistent123: Improve Consistency for One Image to 3D Object Synthesis</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Consistent123: Improve Consistency for One Image to 3D Object Synthesis</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://whaohan.github.io/">Haohan Weng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://tianyu-yang.com">Tianyu Yang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=mt5mvZ8AAAAJ">Jianan Wang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yu-li.github.io/">Yu Li</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.scut.edu.cn/cs/2021/0317/c22284a422099/page.psp">Tong Zhang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www2.scut.edu.cn/cs/2019/0724/c22284a328910/page.htm">C. L. Philip Chen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.leizhang.org">Lei Zhang</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>South China University of Technology,</span>
+            <span class="author-block"><sup>2</sup>International Digital Economy Academy (IDEA)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="./index.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="./index.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="./index.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (TBD)</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Large image diffusion models enable novel view synthesis with high quality and excellent zero-shot capability. However, such models
+            based on image-to-image translation have no guarantee of view consistency, limiting the performance for downstream tasks like 3D 
+            reconstruction and image-to-3D generation. To empower consistency, we propose Consistent123 to synthesize novel views 
+            simultaneously by incorporating additional cross-view attention layers and the shared self-attention mechanism. The proposed attention
+            mechanism improves the interaction across all synthesized views, as well as the alignment between the condition view and novel views. 
+            In the sampling stage, such architecture supports simultaneously generating an arbitrary number of views while training at a fixed length.
+            We also introduce a progressive classifier-free guidance strategy to achieve the trade-off between texture and geometry for synthesized 
+            object views. Qualitative and quantitative experiments show that Consistent123 outperforms baselines in view consistency by a large margin.
+            Furthermore, we demonstrate a significant improvement of Consistent123 on varying downstream tasks, showing its great potential in the 3D generation field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+    <center><img src="./static/images/method.png"/></center>
+    <p>
+      (a) At the training stage, multiple noisy views concatenated (denoted as ⊕) with the input view are fed into the denoising U-Net simultaneously, 
+      conditioned on the CLIP embedding of the input view and the corresponding poses. For sampling, views are denoised iteratively from the normal distribution 
+      through the U-Net. (b) In the shared self-attention layer, all views query the same key and value from the input view, which provides detailed spatial layout 
+      information for novel view synthesis. The input view and related poses are injected into the model by the cross-attention layer, and synthesized views are 
+      further aligned via the cross-view attention layer.
+    </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Novel View Synthesis</h2>
+
+        <h3 class="title is-4">Objaverse Testset</h3>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 autoplay
+                 loop
+                 muted
+                 preload
+                 playsinline
+                 width="100%">
+            <source src="./static/videos/Objaverse.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        <h3 class="title is-4">GSO</h3>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 autoplay
+                 loop
+                 muted
+                 preload
+                 playsinline
+                 width="100%">
+            <source src="./static/videos/GSO.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Downstream Tasks</h2>
+    
+        <h3 class="title is-4">3D Reconstruction with Neus</h3>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 autoplay
+                 loop
+                 muted
+                 preload
+                 playsinline
+                 width="100%">
+            <source src="./static/videos/neus.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        
+        <h3 class="title is-4">Drreamfusion</h3>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 autoplay
+                 loop
+                 muted
+                 preload
+                 playsinline
+                 width="100%">
+            <source src="./static/videos/dreamfusion.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <h3 class="title is-4">One-2-3-45</h3>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 autoplay
+                 loop
+                 muted
+                 preload
+                 playsinline
+                 width="100%">
+            <source src="./static/videos/One2345.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      TBD
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <!-- <a class="icon-link" href="https://github.com/whaohan" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The template is borrowed from <a
+            href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
